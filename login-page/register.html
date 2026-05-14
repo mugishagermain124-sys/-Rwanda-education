@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Rwanda EduConnect — Register</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#0b1f42;--navy2:#0d2a58;--teal:#0a5c4e;
+  --gold:#f5b800;--gold2:#e0a800;
+  --white:#fff;--light:#f4f6fa;
+  --text:#0b1f42;--muted:#6b7280;--border:#d1d5db;
+}
+html,body{height:100%;font-family:'Nunito Sans',sans-serif;background:var(--light);}
+.page{display:none;min-height:100vh;width:100%;}
+.page.active{display:flex;}
+
+/* ══ PAGE 1 — HERO ══ */
+#p1{flex-direction:column;
+  background:linear-gradient(150deg,#071529 0%,#0d2a58 38%,#0a5c4e 80%,#083d33 100%);
+  position:relative;overflow:hidden;}
+.orb1{position:absolute;top:-140px;right:-100px;width:520px;height:520px;border-radius:50%;
+  border:1px solid rgba(255,255,255,0.07);}
+.orb2{position:absolute;bottom:-180px;left:-120px;width:600px;height:600px;border-radius:50%;
+  border:1px solid rgba(255,255,255,0.05);}
+.orb3{position:absolute;top:80px;right:120px;width:280px;height:280px;border-radius:50%;
+  background:rgba(245,184,0,0.06);}
+.orb4{position:absolute;bottom:140px;left:80px;width:200px;height:200px;border-radius:50%;
+  background:rgba(10,92,78,0.3);}
+
+/* nav */
+.hero-nav{position:relative;z-index:5;display:flex;align-items:center;justify-content:space-between;padding:28px 80px;}
+.brand{display:flex;align-items:center;gap:12px;}
+.brand-icon{width:48px;height:48px;background:rgba(255,255,255,0.12);border-radius:12px;
+  display:flex;align-items:center;justify-content:center;}
+.brand-icon svg{width:24px;height:24px;fill:var(--gold);}
+.brand-name{font-family:'Nunito',sans-serif;font-size:20px;font-weight:800;color:#fff;}
+.nav-pill{border:1px solid rgba(255,255,255,0.22);border-radius:24px;padding:8px 20px;
+  font-size:13px;color:rgba(255,255,255,0.7);display:flex;align-items:center;gap:6px;}
+.nav-pill svg{width:13px;height:13px;stroke:rgba(255,255,255,0.55);}
+
+/* hero body */
+.hero-body{position:relative;z-index:5;flex:1;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;padding:20px 40px 0;}
+.stripe{display:flex;gap:6px;justify-content:center;margin-bottom:40px;}
+.stripe span{height:5px;border-radius:3px;}
+.stripe .s1{width:52px;background:#378ADD;}
+.stripe .s2{width:34px;background:#f5b800;}
+.stripe .s3{width:44px;background:#3B6D11;}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;
+  background:rgba(245,184,0,0.15);border:1px solid rgba(245,184,0,0.32);
+  border-radius:28px;padding:9px 22px;margin-bottom:36px;}
+.hero-tag .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);}
+.hero-tag span{font-size:13px;font-weight:700;color:var(--gold);letter-spacing:0.07em;text-transform:uppercase;}
+.hero-h1{font-family:'Nunito',sans-serif;font-size:clamp(54px,8.5vw,96px);font-weight:900;
+  color:#fff;line-height:1.0;letter-spacing:-2px;margin-bottom:30px;}
+.hero-h1 em{color:var(--gold);font-style:normal;}
+.hero-sub{font-size:clamp(16px,2vw,20px);color:rgba(255,255,255,0.62);
+  max-width:600px;line-height:1.75;margin-bottom:52px;}
+.role-pills{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:52px;}
+.rpill{background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.18);
+  border-radius:40px;padding:10px 22px;display:flex;align-items:center;gap:8px;
+  font-size:14px;font-weight:700;color:rgba(255,255,255,0.82);}
+.rpill .pip{width:8px;height:8px;border-radius:50%;}
+.hero-cta{display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:center;margin-bottom:80px;}
+.btn-gold{background:var(--gold);color:var(--navy);font-family:'Nunito',sans-serif;
+  font-size:18px;font-weight:800;border:none;border-radius:12px;padding:18px 48px;
+  cursor:pointer;display:flex;align-items:center;gap:10px;
+  box-shadow:0 8px 32px rgba(245,184,0,0.38);transition:background .2s,transform .15s;}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px);}
+.btn-ghost{background:rgba(255,255,255,0.1);color:#fff;font-family:'Nunito',sans-serif;
+  font-size:16px;font-weight:700;border:1px solid rgba(255,255,255,0.25);
+  border-radius:12px;padding:18px 36px;cursor:pointer;display:flex;align-items:center;gap:8px;
+  transition:background .2s;}
+.btn-ghost:hover{background:rgba(255,255,255,0.18);}
+
+/* stats */
+.stats{position:relative;z-index:5;display:flex;justify-content:center;
+  border-top:1px solid rgba(255,255,255,0.1);padding:0 80px;}
+.stat{flex:1;max-width:230px;padding:38px 24px;text-align:center;
+  border-right:1px solid rgba(255,255,255,0.08);}
+.stat:last-child{border-right:none;}
+.stat-n{font-family:'Nunito',sans-serif;font-size:40px;font-weight:900;color:var(--gold);}
+.stat-l{font-size:12px;color:rgba(255,255,255,0.48);margin-top:4px;text-transform:uppercase;
+  letter-spacing:0.07em;font-weight:700;}
+
+/* ══ SHARED LEFT PANEL ══ */
+.s-left{width:400px;flex-shrink:0;
+  background:linear-gradient(160deg,#0b1f42 0%,#0d2a58 45%,#0a5c4e 100%);
+  padding:52px 40px;display:flex;flex-direction:column;color:#fff;position:relative;overflow:hidden;}
+.s-left::before{content:'';position:absolute;top:-90px;right:-90px;width:300px;height:300px;
+  border-radius:50%;background:rgba(255,255,255,0.04);}
+.s-left-inner{z-index:1;display:flex;flex-direction:column;height:100%;}
+.sec-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:auto;}
+.sec-card{border:1px solid rgba(255,255,255,0.18);border-radius:10px;padding:16px;
+  background:rgba(255,255,255,0.06);}
+.sec-card .lbl{font-family:'Nunito',sans-serif;font-size:18px;font-weight:800;color:var(--gold);display:block;margin-bottom:2px;}
+.sec-card .sub{font-size:11px;font-weight:600;letter-spacing:0.08em;color:rgba(255,255,255,0.5);text-transform:uppercase;}
+.back-btn{display:flex;align-items:center;gap:6px;background:none;border:none;
+  color:rgba(255,255,255,0.4);font-size:13px;cursor:pointer;margin-top:28px;
+  font-family:'Nunito Sans',sans-serif;padding:0;}
+.back-btn:hover{color:rgba(255,255,255,0.7);}
+.back-btn svg{width:14px;height:14px;}
+
+/* ══ SHARED RIGHT PANEL ══ */
+.s-right{flex:1;background:#fff;padding:52px 64px;display:flex;flex-direction:column;overflow-y:auto;}
+.sec-badge{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border);
+  border-radius:20px;padding:6px 14px;font-size:13px;color:var(--muted);
+  align-self:flex-start;margin-bottom:28px;}
+.sec-badge svg{width:13px;height:13px;}
+.pdots{display:flex;gap:8px;align-items:center;margin-bottom:28px;}
+.pdot{width:8px;height:8px;border-radius:50%;background:#e5e7eb;}
+.pdot.done{background:var(--gold);}
+.pdot.active{width:24px;border-radius:4px;background:var(--navy);}
+.pdot-lbl{font-size:12px;color:var(--muted);margin-left:4px;}
+.s-right h2{font-family:'Nunito',sans-serif;font-size:34px;font-weight:900;color:var(--text);margin-bottom:8px;}
+.s-right .sub{font-size:15px;color:var(--muted);margin-bottom:32px;}
+
+/* form elements */
+.fgroup{margin-bottom:20px;}
+.fgroup label{display:block;font-size:14px;font-weight:700;color:var(--text);margin-bottom:7px;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+.frow .fgroup{margin-bottom:0;}
+.pwrap{position:relative;}
+.fgroup input,.fgroup select{
+  width:100%;padding:13px 46px 13px 14px;border:1.5px solid var(--border);border-radius:10px;
+  font-size:15px;font-family:'Nunito Sans',sans-serif;color:var(--text);
+  background:#fff;outline:none;transition:border-color .2s;appearance:none;}
+.fgroup select{padding-right:40px;cursor:pointer;}
+.fgroup input:focus,.fgroup select:focus{border-color:var(--navy);}
+.fgroup input.err{border-color:#dc2626;}
+.sel-arr{position:absolute;right:13px;bottom:15px;pointer-events:none;}
+.sel-arr svg{width:16px;height:16px;stroke:var(--muted);}
+.eye-btn{position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  background:none;border:none;cursor:pointer;color:var(--muted);padding:4px;}
+.eye-btn svg{width:18px;height:18px;display:block;}
+.errtxt{display:none;font-size:12px;color:#dc2626;margin-top:4px;}
+.errtxt.show{display:block;}
+
+/* role info banner */
+.role-banner{display:none;background:var(--light);border-radius:10px;padding:14px 16px;
+  margin-bottom:20px;border-left:4px solid var(--navy);}
+.role-banner.show{display:flex;align-items:flex-start;gap:12px;}
+.rb-icon{width:40px;height:40px;border-radius:9px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;}
+.rb-icon svg{width:20px;height:20px;}
+.rb-text p{font-size:13px;font-weight:700;color:var(--text);margin-bottom:2px;}
+.rb-text span{font-size:12px;color:var(--muted);}
+
+/* strength bar */
+.strength{margin-top:7px;}
+.strength .bars{display:flex;gap:4px;margin-bottom:3px;}
+.strength .bar{flex:1;height:3px;border-radius:2px;background:#e5e7eb;transition:background .3s;}
+.strength .bar.weak{background:#ef4444;}
+.strength .bar.fair{background:#f59e0b;}
+.strength .bar.good{background:#3b82f6;}
+.strength .bar.strong{background:#10b981;}
+.strength .stxt{font-size:11px;color:var(--muted);}
+
+.terms-row{display:flex;align-items:flex-start;gap:9px;margin-bottom:22px;}
+.terms-row input{width:16px;height:16px;margin-top:2px;cursor:pointer;accent-color:var(--navy);}
+.terms-row label{font-size:13px;color:var(--muted);line-height:1.5;cursor:pointer;}
+.terms-row a{color:var(--navy);font-weight:700;text-decoration:none;}
+.btn-next{width:100%;padding:16px;background:var(--gold);color:var(--navy);
+  font-family:'Nunito',sans-serif;font-size:17px;font-weight:800;border:none;border-radius:10px;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;
+  box-shadow:0 6px 24px rgba(245,184,0,0.3);transition:background .2s,transform .1s;margin-bottom:18px;}
+.btn-next:hover{background:var(--gold2);}
+.btn-next:active{transform:scale(0.99);}
+.sign-note{text-align:center;font-size:13px;color:var(--muted);}
+.sign-note a{color:var(--navy);font-weight:700;text-decoration:none;}
+
+/* role display (p3 left) */
+.role-disp{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.1);
+  border-radius:10px;padding:12px 14px;margin-bottom:24px;z-index:1;}
+.rd-icon{width:38px;height:38px;border-radius:8px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;}
+.rd-icon svg{width:20px;height:20px;}
+.role-disp p{font-size:14px;font-weight:700;color:#fff;margin-bottom:1px;}
+.role-disp span{font-size:12px;color:rgba(255,255,255,0.5);}
+
+/* success */
+.soverlay{display:none;position:fixed;inset:0;background:rgba(11,31,66,0.75);
+  z-index:200;align-items:center;justify-content:center;}
+.soverlay.show{display:flex;}
+.sbox{background:#fff;border-radius:20px;padding:48px 52px;text-align:center;max-width:400px;width:90%;}
+.sbox .chk{width:72px;height:72px;background:#d1fae5;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;margin:0 auto 20px;}
+.sbox .chk svg{width:34px;height:34px;stroke:#16a34a;stroke-width:2.5;fill:none;
+  stroke-linecap:round;stroke-linejoin:round;}
+.sbox h3{font-family:'Nunito',sans-serif;font-size:26px;font-weight:900;color:var(--text);margin-bottom:8px;}
+.sbox p{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:26px;}
+.sbox button{background:var(--gold);color:var(--navy);border:none;border-radius:10px;
+  padding:14px 36px;font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;cursor:pointer;}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ PAGE 1 — HERO ═══════════ -->
+<div class="page active" id="p1">
+  <div style="width:100%;display:flex;flex-direction:column;">
+    <div class="orb1"></div><div class="orb2"></div><div class="orb3"></div><div class="orb4"></div>
+
+    <nav class="hero-nav">
+      <div class="brand">
+        <div class="brand-icon"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <span class="brand-name">Rwanda EduConnect</span>
+      </div>
+      <div class="nav-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Secured by REB
+      </div>
+    </nav>
+
+    <div class="hero-body">
+      <div class="stripe"><span class="s1"></span><span class="s2"></span><span class="s3"></span></div>
+      <div class="hero-tag"><div class="dot"></div><span>National Education Platform — Rwanda</span></div>
+      <h1 class="hero-h1">One platform.<br>Every <em>learner</em><br>in Rwanda.</h1>
+      <p class="hero-sub">Join Rwanda's unified education platform — connecting students, teachers, school headteachers, and national authorities on a single, secure, government-backed system.</p>
+      <div class="role-pills">
+        <div class="rpill"><div class="pip" style="background:#60a5fa;"></div>Student</div>
+        <div class="rpill"><div class="pip" style="background:#34d399;"></div>Teacher</div>
+        <div class="rpill"><div class="pip" style="background:#fbbf24;"></div>School Headteacher</div>
+        <div class="rpill"><div class="pip" style="background:#c084fc;"></div>REB / NESA</div>
+      </div>
+      <div class="hero-cta">
+        <button class="btn-gold" onclick="goTo('p2')">
+          Create your account
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+        <button class="btn-ghost" onclick="goTo('p2')">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+          Sign in instead
+        </button>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="stat-n">4,200+</div><div class="stat-l">Schools</div></div>
+      <div class="stat"><div class="stat-n">3M+</div><div class="stat-l">Learners</div></div>
+      <div class="stat"><div class="stat-n">100K+</div><div class="stat-l">Teachers</div></div>
+      <div class="stat"><div class="stat-n">30+</div><div class="stat-l">Districts</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 2 — ROLE + CODE ═══════════ -->
+<div class="page" id="p2">
+  <div class="s-left">
+    <div class="s-left-inner">
+      <div class="stripe" style="justify-content:flex-start;margin-bottom:28px;"><span class="s1"></span><span class="s2"></span><span class="s3"></span></div>
+      <div class="brand" style="margin-bottom:40px;">
+        <div class="brand-icon" style="width:42px;height:42px;"><svg viewBox="0 0 24 24" style="fill:var(--gold);width:22px;height:22px;"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <span class="brand-name">Rwanda EduConnect</span>
+      </div>
+      <h2 style="font-family:'Nunito',sans-serif;font-size:28px;font-weight:900;line-height:1.2;margin-bottom:14px;">Select your role<br>to continue</h2>
+      <p style="font-size:14px;color:rgba(255,255,255,0.6);line-height:1.7;margin-bottom:40px;">Each role is protected by a dedicated access code issued by your institution or authority.</p>
+      <div class="sec-grid">
+        <div class="sec-card"><span class="lbl">256-bit</span><span class="sub">Encryption</span></div>
+        <div class="sec-card"><span class="lbl">OTP</span><span class="sub">Optional 2FA</span></div>
+        <div class="sec-card"><span class="lbl">Audit</span><span class="sub">Activity Logs</span></div>
+        <div class="sec-card"><span class="lbl">Privacy</span><span class="sub">GDPR-Ready</span></div>
+      </div>
+      <button class="back-btn" onclick="goTo('p1')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Back to home
+      </button>
+    </div>
+  </div>
+
+  <div class="s-right">
+    <div class="sec-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Secure access
+    </div>
+    <div class="pdots">
+      <div class="pdot done"></div><div class="pdot active"></div><div class="pdot"></div>
+      <span class="pdot-lbl">Step 1 of 2 — Role verification</span>
+    </div>
+    <h2>Who are you registering as?</h2>
+    <p class="sub">Select your role, then enter the access code assigned to that role by your institution.</p>
+
+    <!-- role dropdown -->
+    <div class="fgroup" style="position:relative;">
+      <label for="roleSelect">Your role</label>
+      <div class="pwrap">
+        <select id="roleSelect" onchange="onRoleChange()" style="padding:13px 40px 13px 14px;">
+          <option value="">— Select a role —</option>
+          <option value="student">Student</option>
+          <option value="teacher">Teacher</option>
+          <option value="headteacher">School Headteacher</option>
+          <option value="nesa">REB / NESA Official</option>
+        </select>
+        <div class="sel-arr"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+    </div>
+
+    <!-- role info banner -->
+    <div class="role-banner" id="roleBanner">
+      <div class="rb-icon" id="rbIcon"></div>
+      <div class="rb-text"><p id="rbTitle"></p><span id="rbDesc"></span></div>
+    </div>
+
+    <!-- access code -->
+    <div class="fgroup">
+      <label for="ac">Role access code</label>
+      <div class="pwrap">
+        <input type="password" id="ac" placeholder=""/>
+        <button class="eye-btn" onclick="toggleEye('ac','eyeAc')" tabindex="-1" aria-label="toggle">
+          <svg id="eyeAc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </button>
+      </div>
+      <span class="errtxt" id="acErr"></span>
+    </div>
+
+    <button class="btn-next" onclick="verifyCode()">
+      Continue to registration
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </button>
+    <p class="sign-note">Already have an account? <a href="#">Sign in</a></p>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 3 — FORM ═══════════ -->
+<div class="page" id="p3">
+  <div class="s-left">
+    <div class="s-left-inner">
+      <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(245,184,0,0.18);border:1px solid rgba(245,184,0,0.3);border-radius:20px;padding:6px 16px;margin-bottom:28px;align-self:flex-start;">
+        <span style="font-size:12px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.06em;">Step 2 — Your details</span>
+      </div>
+      <div class="brand" style="margin-bottom:24px;">
+        <div class="brand-icon" style="width:42px;height:42px;"><svg viewBox="0 0 24 24" style="fill:var(--gold);width:22px;height:22px;"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <span class="brand-name">Rwanda EduConnect</span>
+      </div>
+      <h2 style="font-family:'Nunito',sans-serif;font-size:26px;font-weight:900;line-height:1.2;margin-bottom:18px;z-index:1;">Complete your<br>profile</h2>
+      <div class="role-disp">
+        <div class="rd-icon" id="p3Icon"></div>
+        <div><p id="p3RoleTitle"></p><span id="p3RoleVerified">Role verified ✓</span></div>
+      </div>
+      <p style="font-size:13px;color:rgba(255,255,255,0.52);line-height:1.7;z-index:1;">Fill in your personal details to complete account creation. Your information is encrypted and only accessible to your institution.</p>
+      <div class="sec-grid">
+        <div class="sec-card"><span class="lbl">256-bit</span><span class="sub">Encryption</span></div>
+        <div class="sec-card"><span class="lbl">OTP</span><span class="sub">Optional 2FA</span></div>
+        <div class="sec-card"><span class="lbl">Audit</span><span class="sub">Activity Logs</span></div>
+        <div class="sec-card"><span class="lbl">Privacy</span><span class="sub">GDPR-Ready</span></div>
+      </div>
+      <button class="back-btn" onclick="goTo('p2')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Change role
+      </button>
+    </div>
+  </div>
+
+  <div class="s-right">
+    <div class="sec-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Secure sign up
+    </div>
+    <div class="pdots">
+      <div class="pdot done"></div><div class="pdot done"></div><div class="pdot active"></div>
+      <span class="pdot-lbl">Step 2 of 2 — Personal details</span>
+    </div>
+    <h2 id="p3Heading">Create your account</h2>
+    <p class="sub" id="p3Sub">Fill in your details below.</p>
+    <div id="dynFields"></div>
+    <div class="terms-row">
+      <input type="checkbox" id="terms"/>
+      <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a> of Rwanda EduConnect.</label>
+    </div>
+    <button class="btn-next" onclick="handleSubmit()">
+      Create account
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </button>
+    <p class="sign-note">Already have an account? <a href="#">Sign in</a></p>
+  </div>
+</div>
+
+<!-- SUCCESS -->
+<div class="soverlay" id="soverlay">
+  <div class="sbox">
+    <div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+    <h3>Account created!</h3>
+    <p id="smsg">Welcome to Rwanda EduConnect.</p>
+    <button onclick="document.getElementById('soverlay').classList.remove('show')">Go to sign in →</button>
+  </div>
+</div>
+
+<script>
+const ROLES = {
+  student:{
+    code:'STU2026', label:'Student', desc:'Code issued by your school administrator',
+    color:'#1d4ed8', bg:'#dbeafe',
+    icon:'<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>',
+    fields:[
+      {id:'fn',  label:'First name',      type:'text',     ph:'e.g. Aline',               half:true},
+      {id:'ln',  label:'Last name',       type:'text',     ph:'e.g. Uwase',               half:true},
+      {id:'sid', label:'Student ID',      type:'text',     ph:'Your school student ID'},
+      {id:'em',  label:'Email address',   type:'email',    ph:'aline.uwase@student.rw'},
+      {id:'sch', label:'School name',     type:'text',     ph:'e.g. G.S. Kigali City'},
+      {id:'gr',  label:'Class / Grade',   type:'text',     ph:'e.g. S4 Sciences'},
+      {id:'pw',  label:'Password',        type:'password', ph:'Create a strong password', strength:true},
+      {id:'cpw', label:'Confirm password',type:'password', ph:'Re-enter your password'},
+    ]
+  },
+  teacher:{
+    code:'TCH2026', label:'Teacher', desc:'Code issued by your district office',
+    color:'#059669', bg:'#d1fae5',
+    icon:'<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>',
+    fields:[
+      {id:'fn',  label:'First name',           type:'text',     ph:'e.g. Jean',               half:true},
+      {id:'ln',  label:'Last name',            type:'text',     ph:'e.g. Ndayisaba',          half:true},
+      {id:'em',  label:'Institutional email',  type:'email',    ph:'j.ndayisaba@school.rw'},
+      {id:'tid', label:'Teacher ID / REB No.', type:'text',     ph:'e.g. REB-TCH-000123'},
+      {id:'sch', label:'School / Institution', type:'text',     ph:'e.g. G.S. Remera'},
+      {id:'sub', label:'Subject(s) taught',    type:'text',     ph:'e.g. Mathematics, Physics'},
+      {id:'pw',  label:'Password',             type:'password', ph:'Create a strong password', strength:true},
+      {id:'cpw', label:'Confirm password',     type:'password', ph:'Re-enter your password'},
+    ]
+  },
+  headteacher:{
+    code:'HEAD2026', label:'School Headteacher', desc:'Code from REB regional office',
+    color:'#b45309', bg:'#fef9c3',
+    icon:'<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
+    fields:[
+      {id:'fn',  label:'First name',            type:'text',     ph:'e.g. Marie',             half:true},
+      {id:'ln',  label:'Last name',             type:'text',     ph:'e.g. Mukamana',          half:true},
+      {id:'em',  label:'Official email',        type:'email',    ph:'head@school.rw'},
+      {id:'hid', label:'Head ID / REB No.',     type:'text',     ph:'e.g. REB-HEAD-000456'},
+      {id:'sch', label:'School name',           type:'text',     ph:'e.g. E.S. Nyarugenge'},
+      {id:'dis', label:'District',              type:'text',     ph:'e.g. Kigali City'},
+      {id:'ph',  label:'Phone number',          type:'tel',      ph:'+250 7XX XXX XXX'},
+      {id:'pw',  label:'Password',              type:'password', ph:'Create a strong password', strength:true},
+      {id:'cpw', label:'Confirm password',      type:'password', ph:'Re-enter your password'},
+    ]
+  },
+  nesa:{
+    code:'NESA2026', label:'REB / NESA Official', desc:'Ministry-issued official access code',
+    color:'#7c3aed', bg:'#ede9fe',
+    icon:'<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+    fields:[
+      {id:'fn',  label:'First name',              type:'text',     ph:'e.g. Patrick',          half:true},
+      {id:'ln',  label:'Last name',               type:'text',     ph:'e.g. Habimana',         half:true},
+      {id:'em',  label:'Official ministry email', type:'email',    ph:'p.habimana@mineduc.gov.rw'},
+      {id:'sid', label:'Staff / Official ID',     type:'text',     ph:'e.g. NESA-OFF-000789'},
+      {id:'dep', label:'Department / Division',   type:'text',     ph:'e.g. Curriculum Development'},
+      {id:'ph',  label:'Phone number',            type:'tel',      ph:'+250 7XX XXX XXX'},
+      {id:'pw',  label:'Password',                type:'password', ph:'Create a strong password', strength:true},
+      {id:'cpw', label:'Confirm password',        type:'password', ph:'Re-enter your password'},
+    ]
+  }
+};
+
+let currentRole = null;
+
+function goTo(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function onRoleChange(){
+  const val = document.getElementById('roleSelect').value;
+  const banner = document.getElementById('roleBanner');
+  document.getElementById('acErr').classList.remove('show');
+  document.getElementById('ac').classList.remove('err');
+  if(!val){banner.classList.remove('show');document.getElementById('ac').placeholder='';return;}
+  const r = ROLES[val];
+  const ic = document.getElementById('rbIcon');
+  ic.style.background = r.bg;
+  ic.innerHTML = r.icon.replace('stroke-width="2"',`stroke="${r.color}" stroke-width="2"`);
+  document.getElementById('rbTitle').textContent = r.label;
+  document.getElementById('rbDesc').textContent  = r.desc;
+  banner.style.borderLeftColor = r.color;
+  banner.classList.add('show');
+  /* update access code placeholder to show role name */
+  document.getElementById('ac').placeholder = `Access code for ${r.label}`;
+}
+
+function verifyCode(){
+  const sel = document.getElementById('roleSelect').value;
+  const code = document.getElementById('ac').value.trim();
+  const err  = document.getElementById('acErr');
+  const inp  = document.getElementById('ac');
+  err.classList.remove('show'); inp.classList.remove('err');
+  if(!sel){err.textContent='Please select a role first.';err.classList.add('show');return;}
+  if(!code){err.textContent='Please enter the access code.';err.classList.add('show');inp.classList.add('err');return;}
+  if(code !== ROLES[sel].code){err.textContent='Incorrect access code. Check with your institution.';err.classList.add('show');inp.classList.add('err');return;}
+  currentRole = sel;
+  buildP3();
+  goTo('p3');
+}
+
+function buildP3(){
+  const r = ROLES[currentRole];
+  /* left panel role display */
+  const ic = document.getElementById('p3Icon');
+  ic.style.background = r.bg;
+  ic.innerHTML = r.icon.replace('stroke-width="2"',`stroke="${r.color}" stroke-width="2"`);
+  document.getElementById('p3RoleTitle').textContent = r.label;
+  document.getElementById('p3Heading').textContent = `Create your ${r.label} account`;
+  document.getElementById('p3Sub').textContent = `Fill in your ${r.label.toLowerCase()} details to complete registration.`;
+
+  /* build form fields */
+  const container = document.getElementById('dynFields');
+  container.innerHTML = '';
+  let halfBuf = null;
+
+  r.fields.forEach(f => {
+    const wrap = makeField(f);
+    if(f.half){
+      if(!halfBuf){
+        halfBuf = document.createElement('div');
+        halfBuf.className = 'frow';
+        container.appendChild(halfBuf);
+      }
+      halfBuf.appendChild(wrap);
+      if(halfBuf.children.length === 2) halfBuf = null;
+    } else {
+      halfBuf = null;
+      container.appendChild(wrap);
+    }
+  });
+}
+
+function makeField(f){
+  const wrap = document.createElement('div');
+  wrap.className = 'fgroup';
+
+  const lbl = document.createElement('label');
+  lbl.setAttribute('for', f.id);
+  lbl.textContent = f.label;
+  wrap.appendChild(lbl);
+
+  const pw = document.createElement('div');
+  pw.className = 'pwrap';
+
+  const inp = document.createElement('input');
+  inp.type = f.type === 'password' ? 'password' : f.type;
+  inp.id   = f.id;
+  inp.placeholder = '';
+
+  /* on focus: show placeholder as the field title */
+  inp.addEventListener('focus', ()=>{ inp.placeholder = f.ph; });
+  inp.addEventListener('blur',  ()=>{ if(!inp.value) inp.placeholder = ''; });
+
+  pw.appendChild(inp);
+
+  if(f.type === 'password'){
+    const eyeId = 'eye_'+f.id;
+    const btn = document.createElement('button');
+    btn.className = 'eye-btn'; btn.tabIndex = -1; btn.type = 'button';
+    btn.setAttribute('aria-label','toggle');
+    btn.innerHTML = `<svg id="${eyeId}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
+    btn.onclick = () => toggleEye(f.id, eyeId);
+    pw.appendChild(btn);
+  }
+  wrap.appendChild(pw);
+
+  if(f.strength){
+    const st = document.createElement('div');
+    st.className = 'strength';
+    st.innerHTML = `<div class="bars"><div class="bar" id="b1_${f.id}"></div><div class="bar" id="b2_${f.id}"></div><div class="bar" id="b3_${f.id}"></div><div class="bar" id="b4_${f.id}"></div></div><span class="stxt" id="stxt_${f.id}"></span>`;
+    wrap.appendChild(st);
+    inp.addEventListener('input', ()=>checkStrength(inp.value, f.id));
+  }
+
+  const err = document.createElement('span');
+  err.className = 'errtxt'; err.id = 'err_'+f.id;
+  wrap.appendChild(err);
+  return wrap;
+}
+
+function checkStrength(val, id){
+  const bars = [1,2,3,4].map(i=>document.getElementById(`b${i}_${id}`));
+  const txt = document.getElementById(`stxt_${id}`);
+  if(!bars[0]) return;
+  bars.forEach(b=>{b.className='bar';});
+  if(!val){txt.textContent='';return;}
+  let s=0;
+  if(val.length>=8) s++;
+  if(/[A-Z]/.test(val)) s++;
+  if(/[0-9]/.test(val)) s++;
+  if(/[^A-Za-z0-9]/.test(val)) s++;
+  const cls=['weak','fair','good','strong'][s-1]||'weak';
+  const lbl=['Weak','Fair','Good','Strong'][s-1]||'';
+  for(let i=0;i<s;i++) bars[i].classList.add(cls);
+  txt.textContent = s ? 'Strength: '+lbl : '';
+}
+
+function toggleEye(inputId, svgId){
+  const inp = document.getElementById(inputId);
+  const svg = document.getElementById(svgId);
+  if(inp.type==='password'){
+    inp.type='text';
+    svg.innerHTML='<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>';
+  } else {
+    inp.type='password';
+    svg.innerHTML='<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+  }
+}
+
+function handleSubmit(){
+  const r = ROLES[currentRole]; let ok = true;
+  document.querySelectorAll('#dynFields .errtxt').forEach(e=>e.classList.remove('show'));
+  document.querySelectorAll('#dynFields input').forEach(i=>i.classList.remove('err'));
+  r.fields.forEach(f=>{
+    const inp = document.getElementById(f.id);
+    const err = document.getElementById('err_'+f.id);
+    if(!inp) return;
+    const val = inp.value.trim();
+    if(!val){
+      err.textContent = f.label+' is required.';
+      err.classList.add('show'); inp.classList.add('err'); ok=false;
+    } else if(f.id==='cpw'){
+      const pw = document.getElementById('pw');
+      if(pw && inp.value!==pw.value){
+        err.textContent='Passwords do not match.';
+        err.classList.add('show'); inp.classList.add('err'); ok=false;
+      }
+    } else if(f.id==='pw' && val.length<8){
+      err.textContent='Password must be at least 8 characters.';
+      err.classList.add('show'); inp.classList.add('err'); ok=false;
+    }
+  });
+  if(!document.getElementById('terms').checked){
+    alert('Please agree to the Terms of Service to continue.'); ok=false;
+  }
+  if(!ok) return;
+  const fn = document.getElementById('fn')?.value||'';
+  document.getElementById('smsg').textContent =
+    `Welcome, ${fn}! Your ${r.label} account has been successfully created on Rwanda EduConnect.`;
+  document.getElementById('soverlay').classList.add('show');
+}
+</script>
+</body>
+</html>

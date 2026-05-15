@@ -3,160 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rwanda EduConnect - Digital Library</title>
+    <title>Rwanda EduConnect - National Digital Library</title>
     <link rel="stylesheet" href="library.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   
 </head>
 <body>
-    <main class="container">
-        <header class="hero container">
+
+    <div class="container">
+        <header class="hero">
             <span class="badge">National Digital Library</span>
             <h1>A library that travels with every student</h1>
             <p class="subtitle">Thousands of books, PDFs, and notes — officially curated by REB for all devices.</p>
         </header>
 
-        <section class="controls container">
+        <section class="controls">
             <div class="search-container">
                 <div class="search-box">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" id="searchInput" placeholder="Search by title, subject, or grade...">
+                    <input type="text" id="searchInput" placeholder="Search by title or subject...">
                 </div>
                 <select id="levelFilter" class="dropdown">
                     <option value="all">All Levels</option>
                     <option value="primary">Primary</option>
                     <option value="senior">Senior</option>
                 </select>
-                <button class="btn-filter-main"><i class="fa-solid fa-sliders"></i> Filter</button>
             </div>
 
-            <nav class="filter-tabs" id="categoryTabs">
-                <button class="tab active" data-category="all">All</button>
+            <nav class="filter-tabs">
+                <button class="tab active" data-category="all">All Books</button>
                 <button class="tab" data-category="mathematics">Mathematics</button>
                 <button class="tab" data-category="sciences">Sciences</button>
-                <button class="tab" data-category="english">English</button>
-                <button class="tab" data-category="kinyarwanda">Kinyarwanda</button>
+                <button class="tab" data-category="languages">Languages</button>
                 <button class="tab" data-category="ict">ICT</button>
             </nav>
         </section>
 
         <div class="book-grid" id="bookGrid">
-            <article class="book-card" data-title="Mathematics Senior 4" data-subject="mathematics" data-level="senior">
-                <div class="book-cover bg-green">
-                    <span class="tag">Senior 4</span>
-                    <i class="fa-solid fa-book-open"></i>
+            <div class="book-card" data-category="mathematics" data-level="senior" data-title="Mathematics S4">
+                <div class="book-cover bg-math">
+                    <span class="tag">S4</span>
+                    <i class="fa-solid fa-calculator"></i>
                 </div>
-                <div class="book-details">
-                    <small>MATHEMATICS</small>
-                    <h3>Mathematics for Senior 4</h3>
-                    <button class="dl-btn" onclick="downloadLogic(this, 'Math_S4.pdf')">
-                        <i class="fa-solid fa-download"></i> Download
-                    </button>
-                </div>
-            </article>
-
-            <article class="book-card" data-title="Biology Cells Heredity" data-subject="sciences" data-level="senior">
-                <div class="book-cover bg-blue-grad">
-                    <span class="tag">Senior 5</span>
-                    <i class="fa-solid fa-microscope"></i>
-                </div>
-                <div class="book-details">
-                    <small>SCIENCES</small>
-                    <h3>Biology — Cells & Heredity</h3>
-                    <button class="dl-btn" onclick="downloadLogic(this, 'Bio_S5.pdf')">
-                        <i class="fa-solid fa-download"></i> Download
-                    </button>
-                </div>
-            </article>
-
-            <article class="book-card" data-title="Imikorere y'Ururimi" data-subject="kinyarwanda" data-level="primary">
-                <div class="book-cover bg-yellow">
-                    <span class="tag">Primary 6</span>
-                    <i class="fa-solid fa-language"></i>
-                </div>
-                <div class="book-details">
-                    <small>KINYARWANDA</small>
-                    <h3>Imikorere y'Ururimi</h3>
-                    <button class="dl-btn" onclick="downloadLogic(this, 'Kiny_P6.pdf')">
-                        <i class="fa-solid fa-download"></i> Download
-                    </button>
-                </div>
-            </article>
-        </div>
-
-        <div id="emptyState" class="hidden">
-            <i class="fa-solid fa-file-circle-exclamation"></i>
-            <p>No books found matching your criteria.</p>
-        </div>
-    </main>
-
-
-
-    <footer class="main-footer">
-        <div class="container footer-content">
-            <div class="footer-brand">
-                <div class="footer-logo">
-                    <i class="fa-solid fa-graduation-cap"></i>
-                    <h2>Rwanda EduConnect</h2>
-                </div>
-                <p class="footer-desc">
-                    A national learning platform powered by the Rwanda Education Board (REB) and NESA. 
-                    One curriculum. Every school. Equal opportunity.
-                </p>
-                <div class="color-accent-bar">
-                    <span class="color-blue"></span>
-                    <span class="color-yellow"></span>
-                    <span class="color-green"></span>
-                </div>
-            </div>
-            <div class="footer-links-grid">
-                <div class="link-column">
-                    <h4>Platform</h4>
-                    <ul>
-                        <li><a href="#">Digital Library</a></li>
-                        <li><a href="#">Find a School</a></li>
-                        <li><a href="#">Verify Certificate</a></li>
-                        <li><a href="#">Student Portal</a></li>
-                    </ul>
-                </div>
-                <div class="link-column">
-                    <h4>Authorities</h4>
-                    <ul>
-                        <li><a href="#">Rwanda Education Board</a></li>
-                        <li><a href="#">NESA</a></li>
-                        <li><a href="#">Ministry of Education</a></li>
-                        <li><a href="#">Privacy & Security</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="container bottom-flex">
-                <p>© 2026 Rwanda EduConnect. A Government of Rwanda initiative.</p>
-                <p class="kinyarwanda-welcome">Murakaza neza</p>
-            </div>
-        </div>
-    </footer>
-
-    <div id="bookModal" class="modal-overlay hidden">
-        <div class="modal-content">
-            <button class="modal-close" id="closeModal">&times;</button>
-            <div class="modal-body">
-                <div id="modalCover" class="modal-preview"></div>
-                <div class="modal-text">
-                    <span id="modalSubject" class="badge">SUBJECT</span>
-                    <h2 id="modalTitle">Book Title</h2>
-                    <p class="modal-desc">
-                        This is an official REB resource. You can now read the full content online or download the PDF for your study notes.
-                    </p>
-                    <div class="modal-actions">
-                        <button class="read-btn" onclick="alert('Opening online reader...')">Read Online</button>
-                        <button class="dl-btn modal-dl">Download PDF</button>
+                <div class="book-info">
+                    <small>Mathematics</small>
+                    <h3>Mathematics Senior 4</h3>
+                    <div class="actions">
+                        <button class="open-btn" onclick="openBook('books/math.pdf', 'Mathematics S4')"><i class="fa-solid fa-eye"></i> Open</button>
+                        <a href="books/math.pdf" download class="dl-icon">dowload<i class="fa-solid fa-download"></i></a>
                     </div>
                 </div>
             </div>
+
+            <div class="book-card" data-category="sciences" data-level="senior" data-title="Biology S5 Cells">
+                <div class="book-cover bg-science">
+                    <span class="tag">S5</span>
+                    <i class="fa-solid fa-dna"></i>
+                </div>
+                <div class="book-info">
+                    <small>Sciences</small>
+                    <h3>Biology — Cells & Heredity</h3>
+                    <div class="actions">
+                        <button class="open-btn" onclick="openBook('books/biology.pdf', 'Biology S5')"><i class="fa-solid fa-eye"></i> Open</button>
+                        <a href="books/biology.pdf" download class="dl-icon"><i class="fa-solid fa-download"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="book-card" data-category="languages" data-level="primary" data-title="Kinyarwanda P6">
+                <div class="book-cover bg-lang">
+                    <span class="tag">P6</span>
+                    <i class="fa-solid fa-language"></i>
+                </div>
+                <div class="book-info">
+                    <small>Kinyarwanda</small>
+                    <h3>Imikorere y'Ururimi</h3>
+                    <div class="actions">
+                        <button class="open-btn" onclick="openBook('books/kiny.pdf', 'Kinyarwanda P6')"><i class="fa-solid fa-eye"></i> Open</button>
+                        <a href="books/kiny.pdf" download class="dl-icon"><i class="fa-solid fa-download"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+
+        <div id="emptyState">
+            <i class="fa-solid fa-file-circle-xmark"></i>
+            <h3>No books found</h3>
+            <p>Try searching for a different subject or grade.</p>
         </div>
     </div>
 
-    <script src="library.js"></script>
+    <div id="reader">
+        <div class="reader-header">
+            <strong id="readerTitle">Book Viewer</strong>
+            <button class="close-btn" onclick="closeBook()">Close Library</button>
+        </div>
+        <iframe id="pdfFrame"></iframe>
+    </div>
+
+   <script src="library.js"></script>
 </body>
 </html>

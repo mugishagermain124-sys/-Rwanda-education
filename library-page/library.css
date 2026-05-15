@@ -77,7 +77,7 @@
         .book-info h3 { margin: 8px 0 15px; font-size: 1.1rem; color: var(--dark); }
 
         .actions { display: flex; gap: 8px; }
-        .open-btn { flex: 1; background: var(--bg); color: white; border: none; padding: 10px; border-radius: 8px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .open-btn { flex: 1; background: var(--primary); color: white; border: none; padding: 10px; border-radius: 8px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
         .dl-icon { width: 42px; background: #f1f5f9; color: var(--dark); border-radius: 8px; display: flex; align-items: center; justify-content: center; text-decoration: none; border: 1px solid var(--border); }
 
         /* --- Full Screen Reader --- */

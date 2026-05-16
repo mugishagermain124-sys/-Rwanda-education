@@ -1,4 +1,3 @@
-
 const ROLES = {
   student:{
     code:'STU2026', label:'Student', desc:'Code issued by your school administrator',
@@ -8,7 +7,7 @@ const ROLES = {
       {id:'fn',  label:'First name',      type:'text',     ph:'e.g. Aline',               half:true},
       {id:'ln',  label:'Last name',       type:'text',     ph:'e.g. Uwase',               half:true},
       {id:'sid', label:'Student ID',      type:'text',     ph:'Your school student ID'},
-      {id:'em',  label:'Email address',   type:'email',    ph:'aline.uwase@student.rw'},
+      {id:'em',  label:'Email address',    type:'email',    ph:'aline.uwase@student.rw'},
       {id:'sch', label:'School name',     type:'text',     ph:'e.g. G.S. Kigali City'},
       {id:'gr',  label:'Class / Grade',   type:'text',     ph:'e.g. S4 Sciences'},
       {id:'pw',  label:'Password',        type:'password', ph:'Create a strong password', strength:true},
@@ -85,7 +84,6 @@ function onRoleChange(){
   document.getElementById('rbDesc').textContent  = r.desc;
   banner.style.borderLeftColor = r.color;
   banner.classList.add('show');
-  /* update access code placeholder to show role name */
   document.getElementById('ac').placeholder = `Access code for ${r.label}`;
 }
 
@@ -105,7 +103,6 @@ function verifyCode(){
 
 function buildP3(){
   const r = ROLES[currentRole];
-  /* left panel role display */
   const ic = document.getElementById('p3Icon');
   ic.style.background = r.bg;
   ic.innerHTML = r.icon.replace('stroke-width="2"',`stroke="${r.color}" stroke-width="2"`);
@@ -113,7 +110,6 @@ function buildP3(){
   document.getElementById('p3Heading').textContent = `Create your ${r.label} account`;
   document.getElementById('p3Sub').textContent = `Fill in your ${r.label.toLowerCase()} details to complete registration.`;
 
-  /* build form fields */
   const container = document.getElementById('dynFields');
   container.innerHTML = '';
   let halfBuf = null;
@@ -152,7 +148,6 @@ function makeField(f){
   inp.id   = f.id;
   inp.placeholder = '';
 
-  /* on focus: show placeholder as the field title */
   inp.addEventListener('focus', ()=>{ inp.placeholder = f.ph; });
   inp.addEventListener('blur',  ()=>{ if(!inp.value) inp.placeholder = ''; });
 
@@ -212,10 +207,15 @@ function toggleEye(inputId, svgId){
   }
 }
 
-function handleSubmit(){
-  const r = ROLES[currentRole]; let ok = true;
+// ═══════════ UPDATED FOR BACKEND DATABASE CONNECTION ═══════════
+async function handleSubmit(){
+  const r = ROLES[currentRole]; 
+  let ok = true;
+  
   document.querySelectorAll('#dynFields .errtxt').forEach(e=>e.classList.remove('show'));
   document.querySelectorAll('#dynFields input').forEach(i=>i.classList.remove('err'));
+  
+  // 1. Client-Side Validation Loop
   r.fields.forEach(f=>{
     const inp = document.getElementById(f.id);
     const err = document.getElementById('err_'+f.id);
@@ -235,12 +235,46 @@ function handleSubmit(){
       err.classList.add('show'); inp.classList.add('err'); ok=false;
     }
   });
+
   if(!document.getElementById('terms').checked){
-    alert('Please agree to the Terms of Service to continue.'); ok=false;
+    alert('Please agree to the Terms of Service to continue.'); 
+    ok = false;
   }
+  
   if(!ok) return;
-  const fn = document.getElementById('fn')?.value||'';
-  document.getElementById('smsg').textContent =
-    `Welcome, ${fn}! Your ${r.label} account has been successfully created on Rwanda EduConnect.`;
-  document.getElementById('soverlay').classList.add('show');
+
+  // 2. Gather form values into a payload object
+  const formData = {
+    role: currentRole
+  };
+  
+  r.fields.forEach(f => {
+    const inp = document.getElementById(f.id);
+    if(inp && f.id !== 'cpw') { // No need to send confirm-password to backend
+      formData[f.id] = inp.value.trim();
+    }
+  });
+
+  // 3. Send Registration Payload to Node.js backend
+  try {
+    const response = await fetch('/api/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    });
+
+    const result = await response.json();
+
+    if (response.ok && result.success) {
+      const fn = document.getElementById('fn')?.value || '';
+      document.getElementById('smsg').textContent =
+        `Welcome, ${fn}! Your ${r.label} account has been successfully created on Rwanda EduConnect.`;
+      document.getElementById('soverlay').classList.add('show');
+    } else {
+      alert(result.message || 'Registration failed.');
+    }
+  } catch (error) {
+    console.error('Network Error:', error);
+    alert('Could not establish a connection to the server.');
+  }
 }

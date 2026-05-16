@@ -4,15 +4,17 @@ const path = require('path');
 
 const app = express();
 
-// 1. Tell the server to read JSON data and serve your HTML/CSS files
+// 1. MIDDLEWARE: Allow server to read form data and link assets
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(__dirname)); 
 
-// 2. Create and connect to your database file (educonnect.db)
+// Serve static files from the root directory so CSS/JS are found
+app.use(express.static(__dirname));
+
+// 2. DATABASE: Connect to SQLite file
 const db = new sqlite3.Database('./educonnect.db');
 
-// 3. Create the database table for students when the server starts
+// 3. TABLE: Create student schema
 db.serialize(() => {
     db.run(`CREATE TABLE IF NOT EXISTS students (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -25,12 +27,12 @@ db.serialize(() => {
     )`);
 });
 
-// 4. ROUTE: Serve your registration page when visiting the main link
+// 4. ROUTE: Look inside 'register-page' folder for your HTML file
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'register.html'));
+    res.sendFile(path.join(__dirname, 'register-page', 'register.html'));
 });
 
-// 5. ROUTE: Handle registration data sent from register.js
+// 5. ROUTE: Handle form submissions from register.js
 app.post('/api/register', (req, res) => {
     const { fn, ln, em, pw, gr, sch, role } = req.body;
     const fullName = `${fn} ${ln}`;
@@ -39,31 +41,27 @@ app.post('/api/register', (req, res) => {
         return res.status(400).json({ success: false, message: "Only Student registration is active right now." });
     }
 
-    // Check if the email already exists to avoid duplicate errors
     db.get("SELECT id FROM students WHERE email = ?", [em], (err, row) => {
+        if (err) return res.status(500).json({ success: false, message: "DB Error" });
         if (row) {
             return res.status(400).json({ success: false, message: "This email is already registered!" });
         }
 
-        // Insert the new student row into the database
         const query = `INSERT INTO students (name, email, password, grade, school, streak) VALUES (?, ?, ?, ?, ?, ?)`;
         db.run(query, [fullName, em, pw, gr, sch, 0], function(insertErr) {
             if (insertErr) {
-                return res.status(500).json({ success: false, message: "Failed to save to database." });
+                return res.status(500).json({ success: false, message: "Failed to save user." });
             }
             return res.json({ success: true });
         });
     });
 });
 
-// 6. ROUTE: The Admin page to see everyone who registered!
+// 6. ROUTE: Admin Dashboard View
 app.get('/admin/users', (req, res) => {
     db.all("SELECT id, name, email, school, grade, streak FROM students ORDER BY id DESC", [], (err, rows) => {
-        if (err) {
-            return res.status(500).send("Error reading database.");
-        }
+        if (err) return res.status(500).send("Error reading database.");
 
-        // Build HTML table rows dynamically
         let tableRows = rows.map(user => `
             <tr>
                 <td>${user.id}</td>
@@ -75,7 +73,6 @@ app.get('/admin/users', (req, res) => {
             </tr>
         `).join('');
 
-        // Send back a clean dashboard to see our data
         res.send(`
             <!DOCTYPE html>
             <html>
@@ -104,5 +101,4 @@ app.get('/admin/users', (req, res) => {
     });
 });
 
-// Start the server on Port 3000
 app.listen(3000, () => console.log('Backend running on http://localhost:3000'));

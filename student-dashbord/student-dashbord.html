@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduConnect Rwanda - Student Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #0f2c59;
+            --sidebar-active: #fcc419;
+            --text-dark: #071a33;
+            --text-muted: #64748b;
+            --bg-light: #f3f6fd;
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+            --progress-fill: #0d3873;
+            --progress-bg: #22c55e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* --- SIDEBAR --- */
+        .sidebar {
+            width: 260px;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+
+        .sidebar-top {
+            padding: 25px 20px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .logo-icon {
+            background-color: var(--sidebar-active);
+            color: var(--primary-blue);
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-size: 1.2rem;
+        }
+
+        .logo-text h1 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .logo-text span {
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
+        .sidebar-section-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #6b82a6;
+            margin: 25px 0 10px 10px;
+            font-weight: 600;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #b0c4de;
+            text-decoration: none;
+            padding: 12px 15px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .nav-item i {
+            width: 20px;
+            font-size: 1.05rem;
+            text-align: center;
+        }
+
+        .nav-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--white);
+        }
+
+        .nav-item.active {
+            background-color: var(--sidebar-active);
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .sidebar-bottom {
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        /* --- MAIN WORKSPACE --- */
+        .main-workspace {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        /* Top Navbar */
+        .top-navbar {
+            background-color: var(--white);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .portal-title small {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .portal-title h2 {
+            font-size: 1.3rem;
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        .top-nav-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .noti-bell {
+            position: relative;
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+
+        .noti-dot {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 7px;
+            height: 7px;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        .user-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-name {
+            text-align: right;
+        }
+
+        .user-name h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .user-name span {
+            font-size: 0.75rem;
+            background-color: #f1f5f9;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--text-muted);
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background-color: #10b981;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: 600;
+        }
+
+        /* Content Scroll Wrapper */
+        .content-body {
+            padding: 30px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            background: linear-gradient(135deg, #092042 0%, #1e5245 100%);
+            border-radius: 16px;
+            padding: 35px;
+            color: var(--white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .streak-badge {
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 15px;
+        }
+
+        .hero-banner h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .hero-banner p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .continue-btn {
+            background-color: #fab005;
+            color: var(--text-dark);
+            border: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.2s;
+        }
+
+        .continue-btn:hover {
+            background-color: #fcc419;
+            transform: translateY(-2px);
+        }
+
+        /* Analytics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .metric-card {
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .metric-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .metric-subtext {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .metric-subtext.positive {
+            color: #22c55e;
+            font-weight: 500;
+        }
+
+        .metric-icon-box {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Dashboard Split Section */
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1.9fr 1.1fr;
+            gap: 25px;
+        }
+
+        .content-panel {
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 25px;
+        }
+
+        .panel-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .panel-title h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .panel-title i.header-icon {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+
+        .panel-title p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Today's Schedule Timeline Rows */
+        .schedule-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .schedule-row {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 18px 20px;
+            background-color: var(--white);
+        }
+
+        .schedule-time {
+            width: 80px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--primary-blue);
+        }
+
+        .schedule-details {
+            flex-grow: 1;
+        }
+
+        .schedule-details h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .schedule-details p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .status-badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .status-badge.live {
+            background-color: #fee2e2;
+            color: #ef4444;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-badge.live::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background-color: #ef4444;
+            border-radius: 50%;
+        }
+
+        /* Homework Widget items */
+        .homework-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .homework-item {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .homework-item h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .deadline-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .deadline-tag.today {
+            background-color: #fee2e2;
+            color: #ef4444;
+        }
+
+        .deadline-tag.tomorrow {
+            background-color: #e6f4ea;
+            color: #137333;
+        }
+
+        .deadline-tag.future {
+            background-color: #e6f4ea;
+            color: #137333;
+        }
+
+        .view-all-btn {
+            display: block;
+            text-align: center;
+            width: 100%;
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-top: 15px;
+            transition: 0.2s;
+        }
+
+        .view-all-btn:hover {
+            background-color: var(--bg-light);
+        }
+
+        /* Progress Bars Track Area */
+        .progress-report-panel {
+            grid-column: span 2;
+        }
+
+        .report-header-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .progress-bars-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 40px;
+            row-gap: 20px;
+        }
+
+        .progress-bar-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .progress-meta-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .subject-name {
+            color: var(--text-dark);
+        }
+
+        .percent-val {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        .track-bg {
+            width: 100%;
+            height: 8px;
+            background-color: var(--progress-bg);
+            border-radius: 99px;
+            overflow: hidden;
+        }
+
+        .fill-bar {
+            height: 100%;
+            background-color: var(--progress-fill);
+            border-radius: 99px;
+        }
+
+        .lovable-tag {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            background-color: #1e1e1e;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            z-index: 9999;
+        }
+        .lovable-tag span { color: #ff4a5a; }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-top">
+            <div class="logo-area">
+                <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                <div class="logo-text">
+                    <h1>EduConnect</h1>
+                    <span>RWANDA</span>
+                </div>
+            </div>
+
+            <div class="sidebar-section-title">Student Portal</div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active"><i class="fa-solid fa-border-all"></i> Overview</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-book-open"></i> Lessons</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-list-check"></i> Homework</a>
+                <a href="index.html" class="nav-item"><i class="fa-solid fa-bookmark"></i> Library</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-video"></i> Live classes</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-chart-simple"></i> Results</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-award"></i> Certificates</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-message"></i> Messages</a>
+            </nav>
+        </div>
+
+        <div class="sidebar-bottom">
+            <a href="#" class="nav-item"><i class="fa-solid fa-gear"></i> Settings</a>
+            <a href="#" class="nav-item"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sign out</a>
+        </div>
+    </aside>
+
+    <main class="main-workspace">
+        <header class="top-navbar">
+            <div class="portal-title">
+                <small>Senior 4 • GS Kacyiru</small>
+                <h2>Student Portal</h2>
+            </div>
+            <div class="top-nav-right">
+                <div class="noti-bell">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="noti-dot"></div>
+                </div>
+                <div class="user-meta">
+                    <div class="user-name">
+                        <h4>Aline Uwase</h4>
+                        <span>Student</span>
+                    </div>
+                    <div class="user-avatar">AU</div>
+                </div>
+            </div>
+        </header>
+
+        <div class="content-body">
+            
+            <section class="hero-banner">
+                <div>
+                    <div class="streak-badge">
+                        <i class="fa-solid fa-fire"></i> 12-day learning streak
+                    </div>
+                    <h1>Muraho, Aline 👋</h1>
+                    <p>You have 4 lessons and 1 test scheduled today.</p>
+                </div>
+                <button class="continue-btn">Continue learning <i class="fa-solid fa-arrow-right"></i></button>
+            </section>
+
+            <section class="metrics-grid">
+                <div class="metric-card">
+                    <div>
+                        <div class="metric-label">Lessons Completed</div>
+                        <div class="metric-value">47</div>
+                        <div class="metric-subtext">of 62 this term</div>
+                    </div>
+                    <div class="metric-icon-box"><i class="fa-regular fa-book-open" style="color: #22c55e;"></i></div>
+                </div>
+                <div class="metric-card">
+                    <div>
+                        <div class="metric-label">Average Grade</div>
+                        <div class="metric-value">82%</div>
+                        <div class="metric-subtext positive">+4% this month</div>
+                    </div>
+                    <div class="metric-icon-box"><i class="fa-solid fa-award"></i></div>
+                </div>
+                <div class="metric-card">
+                    <div>
+                        <div class="metric-label">Pending Homework</div>
+                        <div class="metric-value">3</div>
+                        <div class="metric-subtext" style="color: #ef4444;">1 due today</div>
+                    </div>
+                    <div class="metric-icon-box"><i class="fa-regular fa-file-lines" style="color: #ef4444;"></i></div>
+                </div>
+                <div class="metric-card">
+                    <div>
+                        <div class="metric-label">Live Class Today</div>
+                        <div class="metric-value">1</div>
+                        <div class="metric-subtext">08:00 • Math</div>
+                    </div>
+                    <div class="metric-icon-box"><i class="fa-solid fa-video"></i></div>
+                </div>
+            </section>
+
+            <div class="split-layout">
+                
+                <section class="content-panel">
+                    <div class="panel-title">
+                        <h3>Today's schedule</h3>
+                        <i class="fa-regular fa-calendar header-icon"></i>
+                    </div>
+                    <p style="margin-top: -15px; margin-bottom: 15px; font-size: 0.85rem; color: var(--text-muted);">Tuesday, 28 April</p>
+                    
+                    <div class="schedule-list">
+                        <div class="schedule-row">
+                            <div class="schedule-time">08:00</div>
+                            <div class="schedule-details">
+                                <h4>Algebra • Quadratic equations</h4>
+                                <p>Mathematics</p>
+                            </div>
+                            <span class="status-badge live">Live</span>
+                        </div>
+                        <div class="schedule-row">
+                            <div class="schedule-time">10:00</div>
+                            <div class="schedule-details">
+                                <h4>Reading comprehension</h4>
+                                <p>English</p>
+                            </div>
+                        </div>
+                        <div class="schedule-row">
+                            <div class="schedule-time">13:00</div>
+                            <div class="schedule-details">
+                                <h4>Photosynthesis</h4>
+                                <p>Biology</p>
+                            </div>
+                        </div>
+                        <div class="schedule-row">
+                            <div class="schedule-time">15:00</div>
+                            <div class="schedule-details">
+                                <h4>History of Rwanda</h4>
+                                <p>Social Studies</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-panel" style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div class="panel-title">
+                            <h3>Homework</h3>
+                            <i class="fa-regular fa-clipboard header-icon"></i>
+                        </div>
+                        
+                        <div class="homework-list">
+                            <div class="homework-item">
+                                <h4>Quadratic equations • Exercise 4</h4>
+                                <span class="deadline-tag today">Due Today</span>
+                            </div>
+                            <div class="homework-item">
+                                <h4>Essay: My community</h4>
+                                <span class="deadline-tag tomorrow">Due Tomorrow</span>
+                            </div>
+                            <div class="homework-item">
+                                <h4>Lab report: Cells</h4>
+                                <span class="deadline-tag future">Due in 3 days</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="view-all-btn">View all assignments</a>
+                </section>
+
+                <section class="content-panel progress-report-panel">
+                    <div class="panel-title">
+                        <h3>Subject progress • Term 2</h3>
+                        <a href="#" class="report-header-link">View report <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+
+                    <div class="progress-bars-grid">
+                        <div class="progress-bar-container">
+                            <div class="progress-meta-row">
+                                <span class="subject-name">Mathematics</span>
+                                <span class="percent-val">78%</span>
+                            </div>
+                            <div class="track-bg">
+                                <div class="fill-bar" style="width: 78%;"></div>
+                            </div>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-meta-row">
+                                <span class="subject-name">English</span>
+                                <span class="percent-val">64%</span>
+                            </div>
+                            <div class="track-bg">
+                                <div class="fill-bar" style="width: 64%;"></div>
+                            </div>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-meta-row">
+                                <span class="subject-name">Kinyarwanda</span>
+                                <span class="percent-val">92%</span>
+                            </div>
+                            <div class="track-bg">
+                                <div class="fill-bar" style="width: 92%;"></div>
+                            </div>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-meta-row">
+                                <span class="subject-name">Sciences</span>
+                                <span class="percent-val">51%</span>
+                            </div>
+                            <div class="track-bg">
+                                <div class="fill-bar" style="width: 51%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <div class="lovable-tag">Built with <span>&hearts;</span> and care</div>
+
+</body>
+</html>

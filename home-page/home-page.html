@@ -4,13 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rwanda EduConnect | One Nation, One Curriculum</title>
-    <link rel="stylesheet" href="">
+
+    <!-- Your CSS -->
     <link href="home-page.css" rel="stylesheet">
-    
-   
+
+    <!-- Font Awesome (for icons you already used) -->
+     
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
+ 
+    <!-- HEADER -->
     <header>
         <nav class="container">
             <div class="logo-area">
@@ -22,7 +27,6 @@
             </div>
             
             <div class="nav-links-wrapper">
-                <div id="nav-indicator"></div>
                 <ul class="nav-links">
                     <li><a href="#" class="nav-item active">Home</a></li>
                     <li><a href="/library-page/libarary.html" class="nav-item">Library</a></li>
@@ -31,15 +35,21 @@
                 </ul>
             </div>
 
-            <div class="nav-actions">
-                <a href="/login-page/register.html">
-                    <button class="btn-yellow">Get started</button>
-                </a>
-                
+            <div class="auth-actions">
+                <a href="/register-page/login.html"><button class="btn-login">Login</button></a>
+                <a href="/register.html"><button class="btn-register">Register</button></a>
             </div>
         </nav>
     </header>
 
+
+
+
+
+
+
+
+    <!-- HERO -->
     <section class="hero">
         <div class="container hero-grid">
             <div class="hero-text">
@@ -47,49 +57,142 @@
                 <h1>One nation.<br>One curriculum.<br><span class="yellow-text">Equal opportunity.</span></h1>
                 <p>Built by the Rwanda Education Board to unite every learner and teacher.</p>
                 <button class="btn-yellow" style="padding: 15px 30px;">Open my dashboard →</button>
+
                 <div class="hero-stats">
                     <div class="stat"><h3>3,200+</h3><p>SCHOOLS</p></div>
                     <div class="stat"><h3>85K</h3><p>TEACHERS</p></div>
                     <div class="stat"><h3>3.5M</h3><p>STUDENTS</p></div>
                 </div>
             </div>
+
             <div class="hero-image-area">
                 <div class="main-img-wrapper">
                     <img src="/image/the student in home page.png" alt="Classroom">
+
                     <div class="floating-card verified-card">
                         <i class="fas fa-award" style="color:var(--yellow)"></i>
-                        <div><div class="card-label">Certificate</div><div class="card-main">Verified <i class="fas fa-check-circle" style="color:var(--green-success)"></i></div></div>
+                        <div>
+                            <div class="card-label">Certificate</div>
+                            <div class="card-main">
+                                Verified <i class="fas fa-check-circle" style="color:var(--green-success)"></i>
+                            </div>
+                        </div>
                     </div>
+
                     <div class="floating-card lesson-card">
                         <i class="fas fa-book" style="color:var(--green-success)"></i>
-                        <div><div class="card-label">Today's lesson</div><div class="card-main">Mathematics · P5</div></div>
+                        <div>
+                            <div class="card-label">Today's lesson</div>
+                            <div class="card-main">Mathematics · P5</div>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- CERTIFICATE + CAPABILITIES -->
     <section class="section-padding container">
         <span style="color:var(--green-success); font-weight:800; font-size:0.8rem;">TRUST & INTEGRITY</span>
+
         <div class="cert-banner">
             <div class="cert-text">
                 <h2>Authentic certificates, verifiable in seconds.</h2>
-                <p style="margin: 20px 0; opacity: 0.8;">Every diploma issued carries a unique ID and QR code for instant employer verification.</p>
+                <p style="margin: 20px 0; opacity: 0.8;">
+                    Every diploma issued carries a unique ID and QR code for instant employer verification.
+                </p>
                 <button class="btn-yellow">Verify a certificate</button>
             </div>
+
             <div class="cert-img-box">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=RwandaEduConnect-Verified" alt="Certificate" style="width:100px; float:right;">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=RwandaEduConnect-Verified"
+                     alt="Certificate" style="width:100px; float:right;">
                 <h3>Certificate of Completion</h3>
-                <p style="font-size:0.8rem">Awarded to: <strong>Uwase Aline Marie</strong></p>
+                <p style="font-size:0.8rem">
+                    Awarded to: <strong>Uwase Aline Marie</strong>
+                </p>
             </div>
         </div>
 
         <span style="color:var(--green-success); font-weight:800; font-size:0.8rem;">CORE CAPABILITIES</span>
         <h2 style="margin-top:10px;">Everything a national education system needs</h2>
+
         <div class="capability-grid">
-            <div class="cap-card"><i class="fas fa-book-open cap-icon"></i><h4>National Curriculum</h4><p>Uniform lessons across every school.</p></div>
-            <div class="cap-card"><i class="fas fa-cloud-download-alt cap-icon"></i><h4>Offline Access</h4><p>Download lessons and keep learning.</p></div>
-            <div class="cap-card"><i class="fas fa-language cap-icon"></i><h4>Multilingual</h4><p>English, Kinyarwanda, French.</p></div>
-            <div class="cap-card"><i class="fas fa-shield-alt cap-icon"></i><h4>Secure by Design</h4><p>
-                
-             
+            <div class="cap-card">
+                <i class="fas fa-book-open cap-icon"></i>
+                <h4>National Curriculum</h4>
+                <p>Uniform lessons across every school.</p>
+            </div>
+
+            <div class="cap-card">
+                <i class="fas fa-cloud-download-alt cap-icon"></i>
+                <h4>Offline Access</h4>
+                <p>Download lessons and keep learning.</p>
+            </div>
+
+            <div class="cap-card">
+                <i class="fas fa-language cap-icon"></i>
+                <h4>Multilingual</h4>
+                <p>English, Kinyarwanda, French.</p>
+            </div>
+
+            <div class="cap-card">
+                <i class="fas fa-shield-alt cap-icon"></i>
+                <h4>Secure by Design</h4>
+                <p>Built with safety and data protection in mind.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER (ADDED, MATCHES YOUR DESIGN) -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            
+            <div class="footer-col">
+                <div class="logo-area">
+                    <div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div>
+                        <div class="text"><h1>Rwanda EduConnect</h1></div>
+                        <div class="logo-subtext">REB · NESA</div>
+                    </div>
+                </div>
+                <p class="footer-text">
+                    Empowering every learner and teacher across Rwanda through one unified digital education system.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Platform</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="/library-page/libarary.html">Library</a></li>
+                    <li><a href="#">Schools</a></li>
+                    <li><a href="#">Verify Certificate</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Guidelines</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p>Email: support@educonnect.rw</p>
+                <p>Phone: +250 788 000 000</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Rwanda EduConnect · All rights reserved</p>
+        </div>
+    </footer>
+
+</body>
+</html>

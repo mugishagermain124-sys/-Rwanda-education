@@ -187,3 +187,320 @@ html,body{height:100%;font-family:'Nunito Sans',sans-serif;background:var(--ligh
 .sbox p{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:26px;}
 .sbox button{background:var(--gold);color:var(--navy);border:none;border-radius:10px;
   padding:14px 36px;font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;cursor:pointer;}
+
+
+:root {
+    --navy-bg: radial-gradient(circle at top left, #10375C, #061e36);
+    --yellow: #FFB800;
+    --white: #ffffff;
+    --text-light: rgba(255, 255, 255, 0.8);
+    --dark-blue: #061e36;
+    --green-success: #27AE60;
+    --bg-gray: #f8fafc;
+}
+
+/* RESET */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+body { background-color: var(--white); color: var(--dark-blue); line-height: 1.6; overflow-x: hidden; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+/* --- PROFESSIONAL HEADER --- */
+header {
+    padding: 25px 0;
+    background: linear-gradient(90deg, #ffffff 0%, #f9fafc 100%);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* LOGO AREA */
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    margin-left: -70px;
+}
+
+.logo-icon {
+    background: var(--dark-blue);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    box-shadow: 0 6px 15px rgba(6,30,54,0.3);
+    transition: 0.3s;
+}
+
+.logo-area:hover .logo-icon {
+    transform: rotate(-5deg) scale(1.08);
+}
+
+.logo-text {
+    font-weight: 900;
+    font-size: 28px;
+    letter-spacing: -0.3px;
+    color: var(--dark-blue);
+}
+
+.logo-subtext {
+    font-size: 0.75rem;
+    color: #555;
+    font-weight: 600;
+}
+
+/* NAV LINKS */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 12px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #2c3e50;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    position: relative;
+    transition: all 0.3s ease;
+    font-weight: 700;
+}
+
+/* HOVER EFFECT */
+.nav-links li a:hover {
+    color: var(--dark-blue);
+    background: rgba(6,30,54,0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* ACTIVE LINK */
+.nav-links li a.active {
+    color: var(--dark-blue);
+    background: rgba(6,30,54,0.08);
+    font-weight: 700;
+}
+
+/* UNDERLINE ANIMATION */
+.nav-links li a::after {
+    content: "";
+    position: absolute;
+    left: 20%;
+    bottom: 6px;
+    width: 0%;
+    height: 2px;
+    background: var(--yellow);
+    transition: 0.3s;
+    border-radius: 2px;
+}
+
+.nav-links li a:hover::after {
+    width: 60%;
+}
+
+/* BUTTONS */
+.btn-yellow {
+    background: var(--yellow);
+    color: var(--dark-blue);
+    border: none;
+    padding: 10px 22px;
+    border-radius: 10px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px rgba(255,184,0,0.35);
+}
+
+.btn-yellow:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 15px 35px rgba(255,184,0,0.5);
+}
+
+.btn-yellow:active {
+    transform: scale(0.96);
+}
+
+/* AUTH BUTTONS */
+.auth-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.auth-text {
+    font-size: 0.85rem;
+    color: #666;
+    margin-right: 5px;
+}
+
+.btn-login {
+    background: transparent;
+    border: 2px solid var(--dark-blue);
+    color: var(--dark-blue);
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-register {
+    background: var(--yellow);
+    border: none;
+    color: var(--dark-blue);
+    padding: 9px 18px;
+    border-radius: 10px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 10px 25px rgba(255, 184, 0, 0.35);
+}
+
+/* AUTH HOVER EFFECTS */
+.btn-login:hover {
+    background: var(--dark-blue);
+    color: white;
+    box-shadow: 0 8px 20px rgba(6,30,54,0.25);
+    transform: translateY(-2px);
+}
+
+.btn-register:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(255, 184, 0, 0.5);
+}
+
+.btn-login:active,
+.btn-register:active {
+    transform: scale(0.96);
+}
+
+
+
+        /* --- FOOTER --- */
+.footer {
+    background: var(--dark-blue);
+    color: white;
+    padding-top: 60px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+    padding-bottom: 40px;
+}
+
+.footer-col h4 {
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.footer-col ul li a:hover {
+    color: var(--yellow);
+}
+
+.footer-text {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    max-width: 300px;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+    padding: 15px 0;
+    font-size: 0.8rem;
+    color: var(--text-light);
+}
+/* --- AUTH BUTTON AREA --- */
+.auth-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* small text */
+.auth-text {
+    font-size: 0.85rem;
+    color: #666;
+    margin-right: 5px;
+}
+
+/* LOGIN BUTTON */
+.btn-login {
+    background: transparent;
+    border: 2px solid var(--dark-blue);
+    color: var(--dark-blue);
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* REGISTER BUTTON (PRIMARY) */
+.btn-register {
+    background: var(--yellow);
+    border: none;
+    color: var(--dark-blue);
+    padding: 9px 18px;
+    border-radius: 10px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 10px 25px rgba(255, 184, 0, 0.35);
+}
+
+/* HOVER EFFECTS */
+.btn-login:hover {
+    background: var(--dark-blue);
+    color: white;
+    box-shadow: 0 10px 20px rgba(6,30,54,0.25);
+    transform: translateY(-2px);
+}
+
+.btn-register:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 15px 35px rgba(255, 184, 0, 0.5);
+}
+
+/* CLICK EFFECT */
+.btn-login:active,
+.btn-register:active {
+    transform: scale(0.96);
+}
+.text h1{
+    color: white;
+    font-size: 25px;
+}

@@ -6,8 +6,43 @@
 <title>Rwanda EduConnect — Register</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="./register-page/register.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
+
+
+    <!-- HEADER -->
+    <header>
+        <nav class="container">
+            <div class="logo-area">
+                <div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div>
+                    <div class="logo-text">Rwanda EduConnect</div>
+                    <div class="logo-subtext">REB · NESA</div>
+                </div>
+            </div>
+            
+            <div class="nav-links-wrapper">
+                <ul class="nav-links">
+                    <li><a href="#" class="nav-item active">Home</a></li>
+                    <li><a href="/library-page/libarary.html" class="nav-item">Library</a></li>
+                    <li><a href="#" class="nav-item">Schools</a></li>
+                    <li><a href="#" class="nav-item">Verify Certificate</a></li>
+                </ul>
+            </div>
+
+            <div class="auth-actions">
+                <a href="/register-page/login.html"><button class="btn-login">Login</button></a>
+                <a href="/register.html"><button class="btn-register">Register</button></a>
+            </div>
+        </nav>
+    </header>
+
+
+
+
+
+
 
 <!-- ═══════════ PAGE 1 — HERO ═══════════ -->
 <div class="page active" id="p1">
@@ -199,6 +234,56 @@
     <button onclick="document.getElementById('soverlay').classList.remove('show')">Go to sign in →</button>
   </div>
 </div>
+
+
+<!-- FOOTER (ADDED, MATCHES YOUR DESIGN) -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            
+            <div class="footer-col">
+                <div class="logo-area">
+                    <div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div>
+                        <div class="text"><h1>Rwanda EduConnect</h1></div>
+                        <div class="logo-subtext">REB · NESA</div>
+                    </div>
+                </div>
+                <p class="footer-text">
+                    Empowering every learner and teacher across Rwanda through one unified digital education system.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Platform</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="/library-page/libarary.html">Library</a></li>
+                    <li><a href="#">Schools</a></li>
+                    <li><a href="#">Verify Certificate</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Guidelines</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p>Email: support@educonnect.rw</p>
+                <p>Phone: +250 788 000 000</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Rwanda EduConnect · All rights reserved</p>
+        </div>
+    </footer>
 <script src="./register-page/register.js"></script>
 </body>
 </html>
